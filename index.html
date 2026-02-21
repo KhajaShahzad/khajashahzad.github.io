@@ -1,102 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Khaja Shahzad | Java Developer</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khaja Shahzad | Java Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="particles"></div>
+  <!-- NOISE + GRID -->
+  <div class="noise"></div>
+  <div class="grid-overlay"></div>
 
-<!-- NAVBAR -->
-<nav>
-<h2>Shahzad.</h2>
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
+  <!-- ANIMATED CANVAS -->
+  <canvas id="bg-canvas"></canvas>
 
-<!-- HERO -->
-<section class="hero reveal">
-<h1>Khaja Shahzad</h1>
-<p class="typing">Java Backend Developer • Problem Solver • DSA Learner</p>
-<a href="#projects" class="btn">View Projects</a>
-</section>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Khaja Shahzad.</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- ABOUT -->
-<section id="about" class="section reveal">
-<h2>Career Objective</h2>
-<p>
-Aspiring Java Software Developer focused on Data Structures, Core & Advanced Java,
-and backend-oriented applications. Passionate about solving real-world problems
-using scalable and maintainable software solutions.
-</p>
-</section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">// Java Backend Developer</div>
+    <h1>
+      <span>Khaja</span><br>
+      <span class="line-glow">Shahzad</span>
+      <span class="line-glow">Mazhar</span>
+      <span class="line-glow">Hussain</span>
+      
+    </h1>
+    <p class="hero-sub">
+      <span class="typewriter">Problem Solver · DSA Learner · Backend Engineer</span>
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-<!-- SKILLS -->
-<section id="skills" class="section reveal">
-<h2>Technical Skills</h2>
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="about-text-col">
+      <div class="section-label">01 — About</div>
+      <div class="glow-divider"></div>
+      <h2 class="section-title">Career<br>Objective</h2>
+      <p class="about-para">
+        Aspiring Java Software Developer focused on Data Structures, Core & Advanced Java,
+        and backend-oriented applications. Passionate about solving real-world problems
+        using scalable and maintainable software solutions.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-num" data-count="2">0</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" data-count="8">0</div>
+        <div class="stat-label">Technologies</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" data-count="100">0</div>
+        <div class="stat-label">% Committed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" data-count="1">0</div>
+        <div class="stat-label">Goal: Top Dev</div>
+      </div>
+    </div>
+  </section>
 
-<div class="grid">
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="section-label">02 — Expertise</div>
+    <div class="glow-divider"></div>
+    <h2 class="section-title">Technical<br>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card" data-level="92"><span class="skill-icon">☕</span><div class="skill-name">Core Java</div><div class="skill-bar-wrap"><div class="skill-bar"></div></div></div>
+      <div class="skill-card" data-level="80"><span class="skill-icon">⚡</span><div class="skill-name">Advanced Java</div><div class="skill-bar-wrap"><div class="skill-bar"></div></div></div>
+      <div class="skill-card" data-level="85"><span class="skill-icon">🔢</span><div class="skill-name">Data Structures</div><div class="skill-bar-wrap"><div class="skill-bar"></div></div></div>
+      <div class="skill-card" data-level="90"><span class="skill-icon">🧱</span><div class="skill-name">OOP</div><div class="skill-bar-wrap"><div class="skill-bar"></div></div></div>
+      <div class="skill-card" data-level="75"><span class="skill-icon">🌐</span><div class="skill-name">HTML</div><div class="skill-bar-wrap"><div class="skill-bar"></div></div></div>
+      <div class="skill-card" data-level="70"><span class="skill-icon">🎨</span><div class="skill-name">CSS</div><div class="skill-bar-wrap"><div class="skill-bar"></div></div></div>
+      <div class="skill-card" data-level="68"><span class="skill-icon">✨</span><div class="skill-name">JavaScript</div><div class="skill-bar-wrap"><div class="skill-bar"></div></div></div>
+      <div class="skill-card" data-level="88"><span class="skill-icon">🧠</span><div class="skill-name">Problem Solving</div><div class="skill-bar-wrap"><div class="skill-bar"></div></div></div>
+    </div>
+  </section>
 
-<div class="card">Core Java</div>
-<div class="card">Advanced Java</div>
-<div class="card">Data Structures</div>
-<div class="card">Object Oriented Programming</div>
-<div class="card">HTML</div>
-<div class="card">CSS</div>
-<div class="card">JavaScript</div>
-<div class="card">Problem Solving</div>
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="section-label">03 — Work</div>
+    <div class="glow-divider"></div>
+    <h2 class="section-title">Featured<br>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <div class="project-tag">Java · OOP · Backend</div>
+        <h3 class="project-title">Internal Employee Operations Management System</h3>
+        <ul class="project-features">
+          <li>Java backend system for managing employee workflows</li>
+          <li>Role-based access control (Admin / Employee)</li>
+          <li>Centralized data management system</li>
+          <li>Modular OOP architecture for scalability</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-tag">Java · DSA · Queues</div>
+        <h3 class="project-title">Service Request Workflow Engine</h3>
+        <ul class="project-features">
+          <li>Queue-based service request system</li>
+          <li>Priority processing logic</li>
+          <li>State lifecycle management (Open → Closed)</li>
+          <li>Validation and workflow control engine</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-</div>
-</section>
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="section-label">04 — Contact</div>
+    <div class="glow-divider"></div>
+    <h2 class="section-title">Let's<br>Connect</h2>
+    <div class="contact-inner">
+      <p class="contact-tagline">Open to opportunities and collaborations. Feel free to reach out — I respond promptly.</p>
+      <div class="contact-links">
+        <a class="contact-item" href="mailto:khajashahzad90@gmail.com">
+          <span class="contact-item-label">Email</span>
+          <span class="contact-item-value">khajashahzad90@gmail.com</span>
+          <span class="contact-item-arrow">→</span>
+        </a>
+        <div class="contact-item">
+          <span class="contact-item-label">Location</span>
+          <span class="contact-item-value">Warangal, Telangana</span>
+          <span class="contact-item-arrow">📍</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="section reveal">
-<h2>Projects</h2>
+  <footer>
+    <p>© 2026 — Khaja Shahzad Mazhar Hussain</p>
+    <div class="footer-dot"></div>
+    <p>Java Backend Developer</p>
+  </footer>
 
-<div class="project">
-
-<h3>Internal Employee Operations Management System</h3>
-<ul>
-<li>Java backend system for managing employee workflows</li>
-<li>Role-based access control (Admin / Employee)</li>
-<li>Centralized data management system</li>
-<li>Modular OOP architecture</li>
-</ul>
-
-</div>
-
-<div class="project">
-
-<h3>Service Request Workflow Engine</h3>
-<ul>
-<li>Queue-based service request system</li>
-<li>Priority processing logic</li>
-<li>State lifecycle management (Open → Closed)</li>
-<li>Validation and workflow control engine</li>
-</ul>
-
-</div>
-
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section reveal">
-<h2>Contact</h2>
-<p>📧 khajashahzad90@gmail.com</p>
-<p>📍 Warangal, Telangana</p>
-</section>
-
-<footer>
-<p>© 2026 Khaja Shahzad</p>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
