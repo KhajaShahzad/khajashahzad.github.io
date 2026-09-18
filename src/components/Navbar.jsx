@@ -19,7 +19,7 @@ const Navbar = () => {
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : 'auto'; return () => { document.body.style.overflow = 'auto'; }; }, [open]);
 
   return <>
-    <nav className={`fixed top-0 inset-x-0 z-50 px-6 md:px-12 py-5 transition-transform duration-500 ${show ? 'translate-y-0' : '-translate-y-full'}`}>
+    <nav className={`fixed top-0 inset-x-0 z-50 px-6 md:px-12 py-3 md:py-5 transition-transform duration-500 ${show ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between rounded-full border border-white/10 bg-black/45 backdrop-blur-xl px-5 py-3">
         <a href="#home" className="font-black tracking-tight text-lg">KSMH<span className="text-[#ccff00]">.</span></a>
         <div className="hidden md:flex items-center gap-7">

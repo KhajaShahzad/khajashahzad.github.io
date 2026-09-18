@@ -15,7 +15,7 @@ function App() {
   }, []);
 
     return (
-    <main>
+    <main className="w-full overflow-x-clip">
       <Hero onPreloadComplete={handlePreloadComplete} />
 
       <div

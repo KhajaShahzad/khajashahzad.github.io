@@ -21,13 +21,15 @@ const About = () => {
         <span className="hidden md:block text-xs text-gray-600 uppercase tracking-widest">Built through hands-on work</span>
       </div>
       <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-        <h2 className="reveal lg:col-span-7 text-[15vw] lg:text-[9rem] font-black tracking-[-.07em] leading-[.78] uppercase">I build<br/><span className="text-gray-700">useful</span><br/>systems.</h2>
+        <h2 className="reveal lg:col-span-7 text-[clamp(4.5rem,16vw,6.5rem)] lg:text-[9rem] font-black tracking-[-.07em] leading-[.78] uppercase">I build<br/><span className="text-gray-700">useful</span><br/>systems.</h2>
         <div className="lg:col-span-5 pt-3 reveal">
-          <div
-        data-portrait-target
-         className="about-photo-frame relative overflow-hidden rounded-full border border-black/10 w-[250px] h-[250px] mx-auto bg-white"
-          >   
-        <div className="portrait-smoke" />
+         <div
+  data-portrait-target
+  className="about-photo-frame relative overflow-hidden rounded-full border border-black/10 w-[clamp(220px,65vw,300px)] h-[clamp(220px,65vw,300px)] lg:w-[250px] lg:h-[250px] mx-auto bg-white"
+>
+  <div className="portrait-smoke" />
+
+
 </div>
           <p className="text-gray-700 text-lg md:text-xl leading-relaxed font-light mt-10">I'm <span className="text-black font-medium">Khaja Shahzad Mazhar Hussain</span>, a Computer Science and Networks Engineering student at KITS Warangal. My focus is software development, with practical experience building Python and MERN applications.</p>
           <p className="text-gray-600 leading-relaxed mt-7">I enjoy taking a real-world problem, breaking it into systems and workflows, and turning those ideas into working software. I'm also strengthening my Java, Data Structures and Algorithms, and full-stack development fundamentals.</p>
