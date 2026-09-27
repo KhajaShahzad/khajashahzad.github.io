@@ -25,7 +25,70 @@ const EDUCATION_MILESTONES = [
   },
 ];
 
-import { CERTIFICATIONS_DATA } from '../data/certifications';
+import {
+  CERTIFICATIONS_DATA,
+  CERTIFICATES_DATA,
+} from '../data/certifications';
+import { submitPostVerification } from '../utils/verifyCredential';
+
+/**
+ * Reusable Action Button for Credential Verification (supports GET links & dynamic POST forms)
+ */
+export const CredentialActionButton = ({ item, variant = 'row' }) => {
+  if (!item) return null;
+
+  const { verificationPost, credentialUrl } = item;
+  if (!verificationPost && !credentialUrl) return null;
+
+  const isPost = Boolean(verificationPost);
+  const defaultLabel = isPost ? 'Verify Credential ↗' : 'VIEW CREDENTIAL ↗';
+  const label = item.actionLabel || defaultLabel;
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    if (isPost) {
+      e.preventDefault();
+      submitPostVerification({
+        action: verificationPost.action,
+        fields: verificationPost.fields || {},
+        enctype: verificationPost.enctype || 'multipart/form-data',
+        target: verificationPost.target || '_blank',
+      });
+    }
+  };
+
+  const rowClasses =
+    'inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#ccff00]/40 bg-[#ccff00]/10 hover:bg-[#ccff00] hover:text-black text-[11px] font-semibold uppercase tracking-[0.16em] text-[#ccff00] transition-colors cursor-pointer';
+
+  const modalClasses =
+    'px-5 py-2.5 rounded-full bg-[#ccff00] text-black font-bold text-xs uppercase tracking-[0.16em] hover:bg-[#d8ff33] transition-colors cursor-pointer inline-flex items-center justify-center';
+
+  const className = variant === 'modal' ? modalClasses : rowClasses;
+
+  if (isPost) {
+    return (
+      <button
+        type="button"
+        onClick={handleClick}
+        className={className}
+      >
+        {label}
+      </button>
+    );
+  }
+
+  return (
+    <a
+      href={credentialUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()}
+      className={className}
+    >
+      {label}
+    </a>
+  );
+};
 
 /**
  * Reusable Premium Credential Row Component
@@ -94,17 +157,7 @@ export const CertificationRow = ({ item, onSelect }) => {
             </span>
           )}
 
-          {credentialUrl && (
-            <a
-              href={credentialUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#ccff00]/40 bg-[#ccff00]/10 hover:bg-[#ccff00] hover:text-black text-[11px] font-semibold uppercase tracking-[0.16em] text-[#ccff00] transition-colors"
-            >
-              VIEW CREDENTIAL ↗
-            </a>
-          )}
+          <CredentialActionButton item={item} variant="row" />
         </div>
       </div>
     </div>
@@ -258,16 +311,7 @@ export const CertificateModal = ({ item, onClose }) => {
           </div>
 
           <div className="flex items-center gap-3">
-            {item.credentialUrl && (
-              <a
-                href={item.credentialUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-full bg-[#ccff00] text-black font-bold text-xs uppercase tracking-[0.16em] hover:bg-[#d8ff33] transition-colors"
-              >
-                VIEW CREDENTIAL ↗
-              </a>
-            )}
+            <CredentialActionButton item={item} variant="modal" />
           </div>
         </div>
       </div>
@@ -275,12 +319,23 @@ export const CertificateModal = ({ item, onClose }) => {
   );
 };
 
-const SPECIMEN_CREDENTIAL_ITEM = {
-  id: 'credential-slot-specimen',
-  name: 'Verified Certification Slot',
-  issuer: 'Reusable Credential Component — Ready for official certificate data',
+const SPECIMEN_CERTIFICATION_ITEM = {
+  id: 'certification-slot-specimen',
+  name: 'Technical Certification Slot',
+  issuer: 'Technical Certification Authority — Ready for skill credential data',
   issueDate: 'Schema: Name / Issuer / Date / ID / Preview',
-  credentialId: 'VERIFIED-SLOT',
+  credentialId: 'TECH-SLOT',
+  credentialUrl: '',
+  previewUrl: '',
+  isSpecimen: true,
+};
+
+const SPECIMEN_CERTIFICATE_ITEM = {
+  id: 'certificate-slot-specimen',
+  name: 'Experience Certificate Slot',
+  issuer: 'Internship / Program Issuer — Ready for completion certificate data',
+  issueDate: 'Schema: Name / Issuer / Date / ID / Preview',
+  credentialId: 'EXP-SLOT',
   credentialUrl: '',
   previewUrl: '',
   isSpecimen: true,
@@ -452,40 +507,85 @@ const Journey = () => {
           </div>
         </div>
 
-        {/* CERTIFICATIONS SUBSECTION */}
-        <div data-journey-reveal>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/12 pb-4 mb-6">
-            <div>
-              <h3 className="text-xs font-mono uppercase tracking-[0.28em] text-gray-400">
-                CERTIFICATIONS
-              </h3>
-              <p className="text-xs text-gray-500 mt-1.5">
-                Verified technical credentials &amp; examination records
-              </p>
+        {/* CREDENTIALS SECTION: TWO CATEGORIES */}
+        <div className="space-y-16 mt-8 sm:mt-12">
+          {/* 1. CERTIFICATIONS SUBSECTION */}
+          <div data-journey-reveal>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/12 pb-4 mb-6">
+              <div>
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#ccff00] shadow-[0_0_10px_#ccff00]" />
+                  <h3 className="text-xs font-mono uppercase tracking-[0.28em] text-white font-semibold">
+                    CERTIFICATIONS
+                  </h3>
+                </div>
+                <p className="text-xs text-gray-400 mt-1.5 pl-4 sm:pl-4.5">
+                  Internships, Technical &amp; professional skill credentials
+                </p>
+              </div>
+              <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-gray-500">
+                {CERTIFICATIONS_DATA.length > 0
+                  ? `${String(CERTIFICATIONS_DATA.length).padStart(2, '0')} Certified`
+                  : 'Registry Ready'}
+              </span>
             </div>
-            <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-gray-500">
-              {CERTIFICATIONS_DATA.length > 0
-                ? `${String(CERTIFICATIONS_DATA.length).padStart(2, '0')} Published`
-                : 'Registry Ready'}
-            </span>
+
+            {CERTIFICATIONS_DATA.length > 0 ? (
+              <div className="divide-y divide-white/10">
+                {CERTIFICATIONS_DATA.map((cert) => (
+                  <CertificationRow
+                    key={cert.id || cert.name}
+                    item={cert}
+                    onSelect={setSelectedCert}
+                  />
+                ))}
+              </div>
+            ) : (
+              <CertificationRow
+                item={SPECIMEN_CERTIFICATION_ITEM}
+                onSelect={setSelectedCert}
+              />
+            )}
           </div>
 
-          {CERTIFICATIONS_DATA.length > 0 ? (
-            <div className="divide-y divide-white/10">
-              {CERTIFICATIONS_DATA.map((cert) => (
-                <CertificationRow
-                  key={cert.id || cert.name}
-                  item={cert}
-                  onSelect={setSelectedCert}
-                />
-              ))}
+          {/* 2. CERTIFICATES SUBSECTION */}
+          <div data-journey-reveal>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/12 pb-4 mb-6">
+              <div>
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-slate-400" />
+                  <h3 className="text-xs font-mono uppercase tracking-[0.28em] text-white font-semibold">
+                    CERTIFICATES
+                  </h3>
+                </div>
+                <p className="text-xs text-gray-400 mt-1.5 pl-4 sm:pl-4.5">
+                  Program completions
+                </p>
+              </div>
+              <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-gray-500">
+                {CERTIFICATES_DATA.length > 0
+                  ? `${String(CERTIFICATES_DATA.length).padStart(2, '0')} Completed`
+                  : 'Registry Ready'}
+              </span>
             </div>
-          ) : (
-            <CertificationRow
-              item={SPECIMEN_CREDENTIAL_ITEM}
-              onSelect={setSelectedCert}
-            />
-          )}
+
+            {CERTIFICATES_DATA.length > 0 ? (
+              <div className="divide-y divide-white/10">
+                {CERTIFICATES_DATA.map((cert) => (
+                  <CertificationRow
+                    key={cert.id || cert.name}
+                    item={cert}
+                    onSelect={setSelectedCert}
+                  />
+                ))}
+              </div>
+            ) : (
+              <CertificationRow
+                item={SPECIMEN_CERTIFICATE_ITEM}
+                onSelect={setSelectedCert}
+              />
+            )}
+          </div>
         </div>
       </div>
 
